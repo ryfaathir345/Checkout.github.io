@@ -1,0 +1,76 @@
+<html>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <head>
+        <title>CheckOut</title>
+    </head>
+    <body>
+        <div class="mainscreen">
+            <div class="card">
+              <div class="leftside">
+                <img
+                  src="https://image.freepik.com/free-vector/purple-background-with-neon-frame_52683-34124.jpg"
+                  class="product"
+                  alt="Shoes"
+                />
+              </div>
+              <div class="rightside">
+                <form action="" name="submit-to-google-sheet">
+                  <h1>CheckOut</h1>
+                  <h2>Payment Information</h2>
+                  <p>Nama</p>
+                  <input type="text" class="inputbox" name="nama" required />
+                  <p>No Rekening</p>
+                  <input type="number" class="inputbox" name="no.rekening" id="card_number" required />
+                  <p>Alamat</p>
+                  <input type="text" class="inputbox" name="alamat" id="card_number" required />
+      
+                  <p>Card Type</p>
+                  <select class="inputbox" name="pembayaran" id="card_type" required>
+                    <option value="">--Pembayaran--</option>
+                    <option value="Tunai">Tunai</option>
+                    <option value="Transfer">Transfer</option>
+                    <option value="Debit">Debit</option>
+                  </select>
+                  <p>Jam</p>
+                  <input type="time" name="jam" id="" width="100%">
+                <div class="expcvv">
+                  <p class="expcvv_text">tanggal</p>
+                  <input type="date" class="inputbox" name="tanggal" id="exp_date" required />
+                  
+                </div>
+                  <p></p>
+                  <input type="submit" class="button" onclick="contoh()" value="Submit">
+                </form>
+              </div>
+            </div>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        function contoh() {
+           swal({
+                title: "Pembelian",
+                text: "Berhasil",
+                icon: "success",
+                button: true
+            });
+        }
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous">
+      </script>
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby-dGM_Kb_kO9Xxmx567nMCHGQonLl-9tc6AMDsuD3A31FRwqKGxNc3Mm7_yZ9GCXZGiQ/exec'
+        const form = document.forms['submit-to-google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</html>
